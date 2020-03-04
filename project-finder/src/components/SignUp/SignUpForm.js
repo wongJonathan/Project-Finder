@@ -6,7 +6,7 @@ import {withFirebase} from "../Firebase";
 import {HOME} from "../../constants/routes";
 
 
-const initialState = {
+const INITIAL_STATE = {
   username: '',
   email: '',
   passwordOne: '',
@@ -14,7 +14,7 @@ const initialState = {
 };
 
 const SignUpFormBase = (props) => {
-  const [userInfo, setUserInfo] = useState(initialState);
+  const [userInfo, setUserInfo] = useState(INITIAL_STATE);
   const [error, setError] = useState(null);
   const [invalid, setInvalid] = useState(false);
 
@@ -22,7 +22,7 @@ const SignUpFormBase = (props) => {
     props.firebase
       .doCreateUserWithEmailAndPassword(userInfo.email, userInfo.passwordOne)
       .then(authUser => {
-        setUserInfo(initialState);
+        setUserInfo(INITIAL_STATE);
         props.history.push(HOME);
       })
       .catch(error =>{
