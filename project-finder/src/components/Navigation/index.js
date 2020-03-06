@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import {SIGN_IN, LANDING, HOME} from '../../constants/routes';
+import {SIGN_IN, LANDING, HOME, ACCOUNT} from '../../constants/routes';
 import SignOutButton from "../SignOut";
 import { AuthUserContext } from '../Session';
 
@@ -23,6 +23,9 @@ const NavigationAuth = () => (
     </li>
     <li>
       <Link to={HOME}>Home</Link>
+    </li>
+    <li>
+      <Link to={ACCOUNT}>Account</Link>
     </li>
     <li>
       <SignOutButton/>
