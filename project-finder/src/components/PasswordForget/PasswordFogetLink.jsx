@@ -1,7 +1,7 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import {PASSWORD_FORGET} from "../../constants/routes";
+import { PASSWORD_FORGET } from '../../constants/routes';
 
 
 const PasswordForgetLink = () => (

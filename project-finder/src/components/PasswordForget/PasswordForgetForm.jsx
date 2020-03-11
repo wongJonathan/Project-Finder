@@ -1,6 +1,8 @@
+
 import React, { useState, useEffect } from 'react';
 
-import { withFirebase } from "../Firebase";
+import PropTypes from 'prop-types';
+import { withFirebase } from '../Firebase';
 
 
 const PasswordForgetFormBase = (props) => {
@@ -15,8 +17,8 @@ const PasswordForgetFormBase = (props) => {
         setEmail('');
         setError(null);
       })
-      .catch(error => {
-        setError(error);
+      .catch((errorMsg) => {
+        setError(errorMsg);
       });
 
     event.preventDefault();
@@ -44,7 +46,11 @@ const PasswordForgetFormBase = (props) => {
       </button>
       {error && <p>{error.message}</p>}
     </form>
-  )
+  );
+};
+
+PasswordForgetFormBase.propTypes = {
+  firebase: PropTypes.elementType.isRequired,
 };
 
 const PasswordForgotForm = withFirebase(PasswordForgetFormBase);

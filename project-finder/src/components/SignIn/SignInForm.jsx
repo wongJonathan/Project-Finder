@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
+import PropTypes from 'prop-types';
 import { withFirebase } from '../Firebase';
-import {HOME} from "../../constants/routes";
+import { HOME } from '../../constants/routes';
 
 
 const INITIAL_STATE = {
@@ -24,8 +25,8 @@ const SignInFormBase = (props) => {
         setUserInfo(INITIAL_STATE);
         props.history.push(HOME);
       })
-      .catch(error => {
-        setError(error);
+      .catch((errorMsg) => {
+        setError(errorMsg);
       });
 
     event.preventDefault();
@@ -44,26 +45,31 @@ const SignInFormBase = (props) => {
 
   return (
     <form onSubmit={onSubmit}>
-        <input
-          name="email"
-          value={userInfo.email}
-          onChange={onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="password"
-          value={userInfo.password}
-          onChange={onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <button disabled={valid} type="submit">
-          Sign In
-        </button>
-        {error && <p>{error.message}</p>}
-      </form>
-  )
+      <input
+        name="email"
+        value={userInfo.email}
+        onChange={onChange}
+        type="text"
+        placeholder="Email Address"
+      />
+      <input
+        name="password"
+        value={userInfo.password}
+        onChange={onChange}
+        type="password"
+        placeholder="Password"
+      />
+      <button disabled={valid} type="submit">
+        Sign In
+      </button>
+      {error && <p>{error.message}</p>}
+    </form>
+  );
+};
+
+SignInFormBase.propTypes = {
+  firebase: PropTypes.elementType.isRequired,
+  history: PropTypes.elementType.isRequired,
 };
 
 const SignInForm = compose(

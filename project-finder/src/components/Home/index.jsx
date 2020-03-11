@@ -9,9 +9,6 @@ const HomePage = () => (
   </div>
 );
 
-const condition = (authUser) => {
-  console.log(authUser);
-  return !!authUser;
-};
+const condition = (authUser) => !!authUser;
 
 export default withAuthorization(condition)(HomePage);
