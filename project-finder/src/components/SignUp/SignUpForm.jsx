@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
+import PropTypes from 'prop-types';
 import { withFirebase } from '../Firebase';
 import { HOME } from '../../constants/routes';
 
@@ -21,7 +22,7 @@ const SignUpFormBase = (props) => {
   const onSubmit = (event) => {
     props.firebase
       .doCreateUserWithEmailAndPassword(userInfo.email, userInfo.passwordOne)
-      .then((authUser) => {
+      .then(() => {
         setUserInfo(INITIAL_STATE);
         props.history.push(HOME);
       })
@@ -83,6 +84,11 @@ const SignUpFormBase = (props) => {
       {error && <p>{error.message}</p>}
     </form>
   );
+};
+
+SignUpFormBase.propTypes = {
+  firebase: PropTypes.elementType.isRequired,
+  history: PropTypes.elementType.isRequired,
 };
 
 const SignUpForm = compose(

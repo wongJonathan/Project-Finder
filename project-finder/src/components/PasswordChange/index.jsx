@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import { withFirebase } from '../Firebase';
 
@@ -58,6 +59,10 @@ const PasswordChangeForm = (props) => {
       {error && <p>{error.message}</p>}
     </form>
   );
+};
+
+PasswordChangeForm.propTypes = {
+  firebase: PropTypes.elementType.isRequired,
 };
 
 export default withFirebase(PasswordChangeForm);

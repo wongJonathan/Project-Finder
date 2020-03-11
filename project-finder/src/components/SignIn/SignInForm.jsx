@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
+import PropTypes from 'prop-types';
 import { withFirebase } from '../Firebase';
 import { HOME } from '../../constants/routes';
 
@@ -64,6 +65,11 @@ const SignInFormBase = (props) => {
       {error && <p>{error.message}</p>}
     </form>
   );
+};
+
+SignInFormBase.propTypes = {
+  firebase: PropTypes.elementType.isRequired,
+  history: PropTypes.elementType.isRequired,
 };
 
 const SignInForm = compose(

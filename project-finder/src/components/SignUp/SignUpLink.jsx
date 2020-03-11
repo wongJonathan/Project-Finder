@@ -5,8 +5,7 @@ import { SIGN_UP } from '../../constants/routes';
 
 const SignUpLink = () => (
   <p>
-    Don't have an account?
-    {' '}
+    {'Don\'t have an account? '}
     <Link to={SIGN_UP}>Sign Up</Link>
   </p>
 );

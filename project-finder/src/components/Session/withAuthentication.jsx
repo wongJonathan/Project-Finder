@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import PropTypes from 'prop-types';
 import AuthUserContext from './context';
 import { withFirebase } from '../Firebase';
 
@@ -10,9 +11,7 @@ const withAuthentication = (Component) => {
 
     useEffect(() => (
       props.firebase.auth.onAuthStateChanged((receivedUser) => {
-        receivedUser
-          ? setAuthUser(receivedUser)
-          : setAuthUser(null);
+        setAuthUser(receivedUser || null);
       })
     ), []);
 
@@ -22,6 +21,12 @@ const withAuthentication = (Component) => {
       </AuthUserContext.Provider>
     );
   };
+
+  WithAuthentication.propTypes = {
+    firebase: PropTypes.elementType.isRequired,
+    history: PropTypes.elementType.isRequired,
+  };
+
   return withFirebase(WithAuthentication);
 };
 

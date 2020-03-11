@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
+import PropTypes from 'prop-types';
 
 import { withFirebase } from '../Firebase';
 import { SIGN_IN } from '../../constants/routes';
@@ -23,6 +24,12 @@ const withAuthorization = (condition) => (Component) => {
       </AuthUserContext.Consumer>
     );
   };
+
+  WithAuthorization.propTypes = {
+    firebase: PropTypes.elementType.isRequired,
+    history: PropTypes.elementType.isRequired,
+  };
+
   return compose(
     withRouter,
     withFirebase,
