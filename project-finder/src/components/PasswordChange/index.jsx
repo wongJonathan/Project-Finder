@@ -19,8 +19,8 @@ const PasswordChangeForm = (props) => {
       .then(() => {
         setPasswords(INITIAL_STATE);
       })
-      .catch(error => {
-        setError(error);
+      .catch((errorMsg) => {
+        setError(errorMsg);
       });
     event.preventDefault();
   };
@@ -28,35 +28,35 @@ const PasswordChangeForm = (props) => {
   const onChange = (event) => {
     setPasswords({
       ...passwords,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
   useEffect(() => {
-    setInvalid(passwords.passwordOne !== passwords.passwordTwo || passwords.passwordOne === '')
+    setInvalid(passwords.passwordOne !== passwords.passwordTwo || passwords.passwordOne === '');
   }, [passwords]);
 
   return (
     <form onSubmit={onSubmit}>
-        <input
-          name="passwordOne"
-          value={passwords.passwordOne}
-          onChange={onChange}
-          type="password"
-          placeholder="New Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwords.passwordTwo}
-          onChange={onChange}
-          type="password"
-          placeholder="Confirm New Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Change password
-        </button>
-        {error && <p>{error.message}</p>}
-      </form>
+      <input
+        name="passwordOne"
+        value={passwords.passwordOne}
+        onChange={onChange}
+        type="password"
+        placeholder="New Password"
+      />
+      <input
+        name="passwordTwo"
+        value={passwords.passwordTwo}
+        onChange={onChange}
+        type="password"
+        placeholder="Confirm New Password"
+      />
+      <button disabled={isInvalid} type="submit">
+        Change password
+      </button>
+      {error && <p>{error.message}</p>}
+    </form>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 import AuthUserContext from './context';
 import { withFirebase } from '../Firebase';
@@ -6,14 +6,13 @@ import { withFirebase } from '../Firebase';
 
 const withAuthentication = (Component) => {
   const WithAuthentication = (props) => {
-
     const [authUser, setAuthUser] = useState(null);
 
     useEffect(() => (
-      props.firebase.auth.onAuthStateChanged(authUser => {
-        authUser
-          ? setAuthUser(authUser)
-          : setAuthUser(null)
+      props.firebase.auth.onAuthStateChanged((receivedUser) => {
+        receivedUser
+          ? setAuthUser(receivedUser)
+          : setAuthUser(null);
       })
     ), []);
 
