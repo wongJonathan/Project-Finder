@@ -13,7 +13,7 @@ const withAuthentication = (Component) => {
       props.firebase.auth.onAuthStateChanged((receivedUser) => {
         setAuthUser(receivedUser || null);
       })
-    ), []);
+    ), [props]);
 
     return (
       <AuthUserContext.Provider value={authUser}>
