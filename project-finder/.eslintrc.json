@@ -21,6 +21,7 @@
     "plugins": [
         "react"
     ],
+    "ignorePatterns": ["serviceWorker.js"],
     "rules": {
         "react/jsx-props-no-spreading": 0
     },

@@ -10,7 +10,6 @@ const HomePage = () => (
 );
 
 const condition = (authUser) => {
-  console.log(authUser);
   return !!authUser;
 };
 

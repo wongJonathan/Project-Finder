@@ -47,7 +47,6 @@ const SignUpFormBase = (props) => {
       || userInfo.email === ''
       || userInfo.username === '',
     );
-    console.log(userInfo);
   }, [userInfo]);
 
   return (
