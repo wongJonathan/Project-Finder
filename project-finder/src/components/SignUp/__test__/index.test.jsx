@@ -3,11 +3,7 @@ import { render } from '@testing-library/react';
 
 import SignUpPage from '../index';
 
-jest.mock('../SignUpForm', () => {
-  return jest.fn().mockImplementation(() => {
-    return <div>Sign up form</div>;
-  });
-});
+jest.mock('../SignUpForm', () => jest.fn().mockImplementation(() => <div>Sign up form</div>));
 
 describe('Sign Up Page', () => {
   it('Should render sign up page', () => {
