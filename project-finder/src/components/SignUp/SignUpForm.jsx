@@ -8,7 +8,8 @@ import { HOME } from '../../constants/routes';
 
 
 const INITIAL_STATE = {
-  username: '',
+  firstName: '',
+  lastName: '',
   email: '',
   passwordOne: '',
   passwordTwo: '',
@@ -22,6 +23,13 @@ const SignUpFormBase = (props) => {
   const onSubmit = (event) => {
     props.firebase
       .doCreateUserWithEmailAndPassword(userInfo.email, userInfo.passwordOne)
+      .then((authUser) => props.firebase
+        .user(authUser.user.uid)
+        .set({
+          firstName: userInfo.firstName,
+          lastName: userInfo.lastName,
+          email: userInfo.email,
+        }))
       .then(() => {
         setUserInfo(INITIAL_STATE);
         props.history.push(HOME);
@@ -45,18 +53,26 @@ const SignUpFormBase = (props) => {
       userInfo.passwordOne !== userInfo.passwordTwo
       || userInfo.passwordOne === ''
       || userInfo.email === ''
-      || userInfo.username === '',
+      || userInfo.firstName === ''
+      || userInfo.lastName === '',
     );
   }, [userInfo]);
 
   return (
     <form onSubmit={onSubmit}>
       <input
-        name="username"
-        value={userInfo.username}
+        name="firstName"
+        value={userInfo.firstName}
         onChange={onChange}
         type="text"
-        placeholder="Full Name"
+        placeholder="First Name"
+      />
+      <input
+        name="lastName"
+        value={userInfo.lastName}
+        onChange={onChange}
+        type="text"
+        placeholder="Last Name"
       />
       <input
         name="email"
@@ -79,7 +95,7 @@ const SignUpFormBase = (props) => {
         type="password"
         placeholder="Confirm Password"
       />
-      <button disabled={invalid} type="submit">Sign Up</button>
+      <button disabled={invalid} type="submit">Create</button>
       {error && <p>{error.message}</p>}
     </form>
   );
