@@ -5,7 +5,7 @@ import SignUpForm from './SignUpForm';
 
 const SignUpPage = () => (
   <div>
-    <h1>Sign Up</h1>
+    <h1>Create account</h1>
     <SignUpForm />
   </div>
 );

@@ -26,8 +26,8 @@ const withAuthorization = (condition) => (Component) => {
   };
 
   WithAuthorization.propTypes = {
-    firebase: PropTypes.elementType.isRequired,
-    history: PropTypes.elementType.isRequired,
+    firebase: PropTypes.oneOfType([PropTypes.object]).isRequired,
+    history: PropTypes.oneOfType([PropTypes.object]).isRequired,
   };
 
   return compose(
