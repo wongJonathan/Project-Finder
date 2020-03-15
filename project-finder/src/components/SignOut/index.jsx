@@ -9,7 +9,7 @@ const SignOutButton = ({ firebase }) => (
 );
 
 SignOutButton.propTypes = {
-  firebase: PropTypes.elementType.isRequired,
+  firebase: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 export default withFirebase(SignOutButton);

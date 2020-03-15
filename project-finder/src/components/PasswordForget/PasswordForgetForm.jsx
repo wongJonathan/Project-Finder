@@ -50,7 +50,7 @@ const PasswordForgetFormBase = (props) => {
 };
 
 PasswordForgetFormBase.propTypes = {
-  firebase: PropTypes.elementType.isRequired,
+  firebase: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 const PasswordForgotForm = withFirebase(PasswordForgetFormBase);

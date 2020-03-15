@@ -8,6 +8,6 @@ jest.mock('../SignUpForm', () => jest.fn().mockImplementation(() => <div>Sign up
 describe('Sign Up Page', () => {
   it('Should render sign up page', () => {
     const { getByText } = render(<SignUpPage />);
-    expect(getByText('Sign Up')).not.toBeNull();
+    expect(getByText('Create account')).not.toBeNull();
   });
 });

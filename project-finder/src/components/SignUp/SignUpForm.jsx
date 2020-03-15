@@ -102,8 +102,8 @@ const SignUpFormBase = (props) => {
 };
 
 SignUpFormBase.propTypes = {
-  firebase: PropTypes.elementType.isRequired,
-  history: PropTypes.elementType.isRequired,
+  firebase: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  history: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 const SignUpForm = compose(
