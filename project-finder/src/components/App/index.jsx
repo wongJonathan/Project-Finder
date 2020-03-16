@@ -8,7 +8,7 @@ import SignUpPage from '../SignUp';
 import LandingPage from '../Landing';
 import HomePage from '../Home';
 import {
-  SIGN_UP, SIGN_IN, LANDING, HOME, ACCOUNT, PASSWORD_CHANGE, PASSWORD_FORGET,
+  SIGN_UP, SIGN_IN, LANDING, HOME, ACCOUNT, PASSWORD_CHANGE, PASSWORD_FORGET, SURVEY,
 } from '../../constants/routes';
 import SignInPage from '../SignIn';
 import { withAuthentication } from '../Session';
@@ -18,6 +18,7 @@ import PasswordForgetPage from '../PasswordForget';
 import './index.sass';
 import AppHeader from './appHeader';
 import AppFooter from './appFooter';
+import SurveyPage from '../Survey';
 
 
 const App = () => (
@@ -31,6 +32,7 @@ const App = () => (
       <Route path={ACCOUNT} component={AccountPage} />
       <Route path={PASSWORD_CHANGE} component={PasswordChangeForm} />
       <Route path={PASSWORD_FORGET} component={PasswordForgetPage} />
+      <Route path={SURVEY} component={SurveyPage} />
       <AppFooter />
     </div>
   </Router>
