@@ -4,7 +4,6 @@ import {
   Route,
 } from 'react-router-dom';
 
-import Navigation from '../Navigation';
 import SignUpPage from '../SignUp';
 import LandingPage from '../Landing';
 import HomePage from '../Home';
@@ -21,10 +20,6 @@ import PasswordForgetPage from '../PasswordForget';
 const App = () => (
   <Router>
     <div>
-      <Navigation />
-
-      <hr />
-
       <Route exact path={LANDING} component={LandingPage} />
       <Route path={SIGN_IN} component={SignInPage} />
       <Route path={SIGN_UP} component={SignUpPage} />
