@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-
 import PropTypes from 'prop-types';
+
 import { withFirebase } from '../Firebase';
 import { HOME } from '../../constants/routes';
 import './SignUpForm.sass';

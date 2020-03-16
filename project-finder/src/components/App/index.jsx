@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Router, Link,
+  BrowserRouter as Router,
   Route,
 } from 'react-router-dom';
 
@@ -17,6 +17,7 @@ import PasswordChangeForm from '../PasswordChange';
 import PasswordForgetPage from '../PasswordForget';
 import './index.sass';
 import AppHeader from './appHeader';
+import AppFooter from './appFooter';
 
 
 const App = () => (
@@ -30,14 +31,7 @@ const App = () => (
       <Route path={ACCOUNT} component={AccountPage} />
       <Route path={PASSWORD_CHANGE} component={PasswordChangeForm} />
       <Route path={PASSWORD_FORGET} component={PasswordForgetPage} />
-      <div className="app-gutter">
-        <h2>
-          Squad
-        </h2>
-        <Link to={LANDING}>About</Link>
-        <Link to={LANDING}>Members</Link>
-        <Link to={LANDING}>User Agreement</Link>
-      </div>
+      <AppFooter />
     </div>
   </Router>
 );

@@ -41,4 +41,4 @@ const AppHeader = compose(
   withRouter,
 )(AppHeaderBase);
 
-export default withRouter(AppHeader);
+export default AppHeader;
