@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-
 import PropTypes from 'prop-types';
+
 import { withFirebase } from '../Firebase';
 import { HOME } from '../../constants/routes';
+import './SignUpForm.sass';
 
 
 const INITIAL_STATE = {
@@ -59,7 +60,7 @@ const SignUpFormBase = (props) => {
   }, [userInfo]);
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className="signup-form" onSubmit={onSubmit}>
       <input
         name="firstName"
         value={userInfo.firstName}
@@ -95,7 +96,7 @@ const SignUpFormBase = (props) => {
         type="password"
         placeholder="Confirm Password"
       />
-      <button disabled={invalid} type="submit">Create</button>
+      <button className="signup-submit" disabled={invalid} type="submit">Create</button>
       {error && <p>{error.message}</p>}
     </form>
   );

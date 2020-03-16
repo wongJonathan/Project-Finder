@@ -4,7 +4,6 @@ import {
   Route,
 } from 'react-router-dom';
 
-import Navigation from '../Navigation';
 import SignUpPage from '../SignUp';
 import LandingPage from '../Landing';
 import HomePage from '../Home';
@@ -16,15 +15,15 @@ import { withAuthentication } from '../Session';
 import AccountPage from '../Account';
 import PasswordChangeForm from '../PasswordChange';
 import PasswordForgetPage from '../PasswordForget';
+import './index.sass';
+import AppHeader from './appHeader';
+import AppFooter from './appFooter';
 
 
 const App = () => (
   <Router>
-    <div>
-      <Navigation />
-
-      <hr />
-
+    <div className="app-container">
+      <AppHeader />
       <Route exact path={LANDING} component={LandingPage} />
       <Route path={SIGN_IN} component={SignInPage} />
       <Route path={SIGN_UP} component={SignUpPage} />
@@ -32,6 +31,7 @@ const App = () => (
       <Route path={ACCOUNT} component={AccountPage} />
       <Route path={PASSWORD_CHANGE} component={PasswordChangeForm} />
       <Route path={PASSWORD_FORGET} component={PasswordForgetPage} />
+      <AppFooter />
     </div>
   </Router>
 );
