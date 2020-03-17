@@ -3,7 +3,6 @@ import ProjectPreference from './projectPreference';
 
 const SurveyPage = () => (
   <div>
-    <div>Survey</div>
     <ProjectPreference />
   </div>
 );
