@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import SurveyButton from './surveyButton';
 
 
-const RoleChoice = ({ choices }) => {
+const Choices = ({ choices }) => {
   // eslint-disable-next-line no-unused-vars
   const [choice, setChoice] = useState(0);
 
@@ -21,8 +21,8 @@ const RoleChoice = ({ choices }) => {
   );
 };
 
-RoleChoice.propTypes = {
+Choices.propTypes = {
   choices: PropTypes.oneOfType([PropTypes.array]).isRequired,
 };
 
-export default RoleChoice;
+export default Choices;
