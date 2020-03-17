@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import SurveyButton from './surveyButton';
-
+import './draggableList.sass';
 
 const reinsert = (arr, from, to) => {
   console.log(arr, from, to);
@@ -14,11 +14,11 @@ const reinsert = (arr, from, to) => {
   return output;
 };
 
-const DragHandle = SortableHandle(() => <span>::</span>);
+const DragHandle = SortableHandle(() => <img className="draggable-handle" src="/images/threeDots.svg" alt="" />);
 
 const SortableItem = SortableElement(({ value }) => {
   const content = (
-    <div>
+    <div className="draggable-item">
       <DragHandle />
       {value}
     </div>
@@ -45,11 +45,20 @@ const DraggableList = ({ initialList }) => {
   };
 
   return (
-    <SortableList
-      items={list}
-      onSortEnd={onSortEnd}
-      shouldCancelStart={() => null}
-    />
+    <div className="draggable">
+      <div className="draggable-pos">
+        {list.map((_, index) => (
+          <div className="draggable-pos-box">
+            {`0${index + 1}`}
+          </div>
+        ))}
+      </div>
+      <SortableList
+        items={list}
+        onSortEnd={onSortEnd}
+        shouldCancelStart={() => null}
+      />
+    </div>
   );
 };
 
