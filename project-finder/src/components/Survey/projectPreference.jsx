@@ -26,30 +26,37 @@ const QuestionComponent = ({ text }) => (
 );
 
 const ProjectPreference = () => {
-  // eslint-disable-next-line no-unused-vars
   const [userPreferences, setUser] = useState({});
 
+  const getChanges = (attributeName) => (value) => {
+    setUser((prevState) => ({
+      ...prevState,
+      [attributeName]: value,
+    }));
+  };
+
+  console.log(userPreferences);
   return (
     <div className="project-container">
       <QuestionComponent
         text="Rank the following project type in order of preference — 1 being your most preferred."
       />
-      <DraggableList initialList={CATEGORY_NAMES} />
+      <DraggableList initialList={CATEGORY_NAMES} onChange={getChanges('projects')} />
       <div className="project-gap" />
       <QuestionComponent
         text="What best describes you?"
       />
-      <Choices choices={ROLE_CHOICES} />
+      <Choices choices={ROLE_CHOICES} onChange={getChanges('roles')} />
       <div className="project-gap" />
       <QuestionComponent
         text="How many hours a week will you commit to a project?"
       />
-      <SurveyTextField placeholder="Hours" />
+      <SurveyTextField placeholder="Hours" onChange={getChanges('hours')} />
       <div className="project-gap" />
       <QuestionComponent
         text="Are you willing to work remotely?"
       />
-      <Choices choices={REMOTE_CHOICE} />
+      <Choices choices={REMOTE_CHOICE} onChange={getChanges('remote')} />
       <div className="project-gap" />
     </div>
   );

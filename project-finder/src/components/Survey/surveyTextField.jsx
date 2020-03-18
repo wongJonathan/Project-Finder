@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import './surveyTextField.sass';
 
 
-const SurveyTextField = ({ placeholder }) => {
+const SurveyTextField = ({ placeholder, onChange }) => {
   const [input, setInput] = useState('');
 
   const handleChange = (e) => {
     setInput(e.target.value);
+    onChange(e.target.value);
   };
 
   return (
@@ -23,6 +24,7 @@ const SurveyTextField = ({ placeholder }) => {
 
 SurveyTextField.propTypes = {
   placeholder: PropTypes.oneOfType([PropTypes.string]).isRequired,
+  onChange: PropTypes.oneOfType([PropTypes.func]).isRequired,
 };
 
 export default SurveyTextField;

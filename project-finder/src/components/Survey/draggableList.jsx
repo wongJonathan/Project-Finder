@@ -6,7 +6,6 @@ import SurveyButton from './surveyButton';
 import './draggableList.sass';
 
 const reinsert = (arr, from, to) => {
-  console.log(arr, from, to);
   const output = arr.slice(0);
   const val = output[from];
   output.splice(from, 1);
@@ -37,11 +36,13 @@ const SortableList = SortableContainer(({ items }) => (
   </ul>
 ));
 
-const DraggableList = ({ initialList }) => {
+const DraggableList = ({ initialList, onChange }) => {
   const [list, setList] = useState(initialList);
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
-    setList(reinsert(list, oldIndex, newIndex));
+    const newList = reinsert(list, oldIndex, newIndex);
+    setList(newList);
+    onChange(newList);
   };
 
   return (
@@ -64,6 +65,7 @@ const DraggableList = ({ initialList }) => {
 
 DraggableList.propTypes = {
   initialList: PropTypes.oneOfType([PropTypes.array]).isRequired,
+  onChange: PropTypes.oneOfType([PropTypes.func]).isRequired,
 };
 
 export default DraggableList;
