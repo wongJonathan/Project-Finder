@@ -5,4 +5,4 @@ export const HOME = '/home';
 export const PASSWORD_FORGET = '/password_forget';
 export const PASSWORD_CHANGE = '/password_change';
 export const ACCOUNT = '/account';
-export const ACCOUNT_CREATION = '/account_creation';
+export const SURVEY = '/survey_question';
