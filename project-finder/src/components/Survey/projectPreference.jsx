@@ -26,6 +26,7 @@ const QuestionComponent = ({ text }) => (
 );
 
 const ProjectPreference = () => {
+  // eslint-disable-next-line no-unused-vars
   const [userPreferences, setUser] = useState({});
 
   const getChanges = (attributeName) => (value) => {
@@ -35,7 +36,6 @@ const ProjectPreference = () => {
     }));
   };
 
-  console.log(userPreferences);
   return (
     <div className="project-container">
       <QuestionComponent
@@ -51,7 +51,7 @@ const ProjectPreference = () => {
       <QuestionComponent
         text="How many hours a week will you commit to a project?"
       />
-      <SurveyTextField placeholder="Hours" onChange={getChanges('hours')} />
+      <SurveyTextField props={{ placeholder: 'Hours', type: 'number' }} onChange={getChanges('hours')} />
       <div className="project-gap" />
       <QuestionComponent
         text="Are you willing to work remotely?"

@@ -7,12 +7,12 @@ import './surveyButton.sass';
 const SurveyButton = ({ props, content, selected }) => (
   selected
     ? (
-      <button className="survey-button-on" type="button" {...props}>
+      <button className="survey-button-on" aria-label="selected" type="button" {...props}>
         {content}
       </button>
     )
     : (
-      <button className="survey-button-off" type="button" {...props}>
+      <button className="survey-button-off" aria-label="not selected" type="button" {...props}>
         {content}
       </button>
     )
@@ -28,6 +28,7 @@ SurveyButton.propTypes = {
   content: PropTypes.oneOfType([
     PropTypes.elementType,
     PropTypes.string,
+    PropTypes.number,
   ]).isRequired,
   selected: PropTypes.oneOfType([PropTypes.bool]),
 };

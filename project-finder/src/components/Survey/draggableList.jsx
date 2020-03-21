@@ -57,7 +57,7 @@ const DraggableList = ({ initialList, onChange }) => {
       <SortableList
         items={list}
         onSortEnd={onSortEnd}
-        shouldCancelStart={() => null}
+        shouldCancelStart={() => false}
       />
     </div>
   );
