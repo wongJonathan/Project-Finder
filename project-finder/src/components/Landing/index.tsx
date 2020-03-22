@@ -1,12 +1,16 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { History } from 'history';
 
 import './index.sass';
 import { SIGN_UP } from '../../constants/routes';
 
+interface LandingPageProps {
+  history: History;
+}
 
-const LandingPage = ({ history }) => {
+
+const LandingPage = ({ history }: LandingPageProps) => {
   const joinButton = () => {
     history.push(SIGN_UP);
   };
@@ -49,10 +53,6 @@ const LandingPage = ({ history }) => {
       </button>
     </div>
   );
-};
-
-LandingPage.propTypes = {
-  history: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 export default withRouter(LandingPage);

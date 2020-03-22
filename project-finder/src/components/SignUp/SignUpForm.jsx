@@ -60,8 +60,9 @@ const SignUpFormBase = (props) => {
   }, [userInfo]);
 
   return (
-    <form className="signup-form" onSubmit={onSubmit}>
+    <form id="signup" className="signup-form" onSubmit={onSubmit}>
       <input
+        form="signup"
         name="firstName"
         value={userInfo.firstName}
         onChange={onChange}
@@ -69,6 +70,7 @@ const SignUpFormBase = (props) => {
         placeholder="First Name"
       />
       <input
+        form="signup"
         name="lastName"
         value={userInfo.lastName}
         onChange={onChange}
@@ -76,6 +78,7 @@ const SignUpFormBase = (props) => {
         placeholder="Last Name"
       />
       <input
+        form="signup"
         name="email"
         value={userInfo.email}
         onChange={onChange}
@@ -83,6 +86,7 @@ const SignUpFormBase = (props) => {
         placeholder="Email Address"
       />
       <input
+        form="signup"
         name="passwordOne"
         value={userInfo.passwordOne}
         onChange={onChange}
@@ -90,13 +94,14 @@ const SignUpFormBase = (props) => {
         placeholder="Password"
       />
       <input
+        form="signup"
         name="passwordTwo"
         value={userInfo.passwordTwo}
         onChange={onChange}
         type="password"
         placeholder="Confirm Password"
       />
-      <button className="signup-submit" disabled={invalid} type="submit">Create</button>
+      <button form="signup" className="signup-submit" disabled={invalid} type="submit">Create</button>
       {error && <p>{error.message}</p>}
     </form>
   );
