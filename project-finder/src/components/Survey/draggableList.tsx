@@ -63,8 +63,8 @@ const DraggableList = ({ initialList, onChange }: DraggableListProps): ReactElem
   return (
     <div className="draggable">
       <div className="draggable-pos">
-        {(list as Array<string | number>).map((_: string | number, index: number) => (
-          <div className="draggable-pos-box">
+        {(list as Array<string | number>).map((name: string | number, index: number) => (
+          <div key={`${name}'s index`} className="draggable-pos-box">
             {`0${index + 1}`}
           </div>
         ))}

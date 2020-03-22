@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 
 import './projectPreference.sass';
 import Choices from './choices';
 import DraggableList from './draggableList';
 import SurveyTextField from './surveyTextField';
+
+interface UserChoices {
+  [attribute: string]: string | number | string[] | number[];
+}
 
 
 const CATEGORY_NAMES = ['Web', 'Android App', 'iOS App', 'Voice'];
@@ -19,7 +22,7 @@ const ROLE_CHOICES = [
 ];
 const REMOTE_CHOICE = ['Yes', 'No'];
 
-const QuestionComponent = ({ text }) => (
+const QuestionComponent = ({ text }: {text: string}) => (
   <div className="project-question">
     {text}
   </div>
@@ -27,9 +30,9 @@ const QuestionComponent = ({ text }) => (
 
 const ProjectPreference = () => {
   // eslint-disable-next-line no-unused-vars
-  const [userPreferences, setUser] = useState({});
+  const [userPreferences, setUser] = useState<UserChoices>({});
 
-  const getChanges = (attributeName) => (value) => {
+  const getChanges = (attributeName: string) => (value: string | number | string[] | number[]) => {
     setUser((prevState) => ({
       ...prevState,
       [attributeName]: value,
@@ -51,7 +54,7 @@ const ProjectPreference = () => {
       <QuestionComponent
         text="How many hours a week will you commit to a project?"
       />
-      <SurveyTextField props={{ placeholder: 'Hours', type: 'number' }} onChange={getChanges('hours')} />
+      <SurveyTextField props={{ placeholder: 'Hours' }} type="number" onChange={getChanges('hours')} />
       <div className="project-gap" />
       <QuestionComponent
         text="Are you willing to work remotely?"
@@ -60,10 +63,6 @@ const ProjectPreference = () => {
       <div className="project-gap" />
     </div>
   );
-};
-
-QuestionComponent.propTypes = {
-  text: PropTypes.oneOfType([PropTypes.string]).isRequired,
 };
 
 export default ProjectPreference;

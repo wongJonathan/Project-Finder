@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 
 import './surveyTextField.sass';
 
+interface SurveyTextFieldProps {
+  props?: React.HTMLAttributes<HTMLInputElement>;
+  onChange: (choice: string | number) => void;
+  type?: string;
+}
 
-const SurveyTextField = ({ props, onChange }) => {
+
+const SurveyTextField = ({ props, onChange, type }: SurveyTextFieldProps) => {
   const [input, setInput] = useState('');
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
     onChange(e.target.value);
   };
@@ -27,17 +32,9 @@ const SurveyTextField = ({ props, onChange }) => {
       {...props}
       value={input}
       onChange={handleChange}
+      type={type || 'string'}
     />
   );
-};
-
-SurveyTextField.defaultProps = {
-  props: {},
-};
-
-SurveyTextField.propTypes = {
-  props: PropTypes.oneOfType([PropTypes.object]),
-  onChange: PropTypes.oneOfType([PropTypes.func]).isRequired,
 };
 
 export default SurveyTextField;
