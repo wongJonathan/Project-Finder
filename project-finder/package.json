@@ -10,10 +10,7 @@
     "@testing-library/user-event": "^7.2.1",
     "@types/jest": "^24.9.1",
     "@types/node": "^12.12.30",
-    "@types/react": "^16.9.25",
     "@types/react-dom": "^16.9.5",
-    "@typescript-eslint/eslint-plugin": "^2.10.0",
-    "@typescript-eslint/parser": "^2.10.0",
     "babel-eslint": "10.1.0",
     "babel-jest": "^24.9.0",
     "babel-loader": "8.1.0",
@@ -72,24 +69,29 @@
   },
   "devDependencies": {
     "@testing-library/react": "^9.5.0",
+    "@types/react": "^16.9.25",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.24.0",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-config-react": "^1.1.7",
     "eslint-loader": "^3.0.3",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "react-router-dom": "^5.1.2",
-    "tslint": "^6.1.0"
+    "prettier": "^2.0.1",
+    "react-router-dom": "^5.1.2"
   },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "eslint src/**/*.{js,jsx}",
-    "tslint": "tslint --init"
+    "lint": "eslint src/**/*.{js,jsx}"
   },
   "eslintConfig": {
     "extends": "react-app"

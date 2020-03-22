@@ -6,7 +6,9 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "airbnb"
+        "airbnb",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -21,13 +23,15 @@
     },
     "plugins": [
         "react",
-        "react-hooks"
+        "react-hooks",
+        "@typescript-eslint"
     ],
     "ignorePatterns": ["serviceWorker.js"],
     "rules": {
         "react/jsx-props-no-spreading": 0,
         "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": "warn"
+        "react-hooks/exhaustive-deps": "warn",
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }]
     },
-    "parser": "babel-eslint"
+    "parser": "@typescript-eslint/parser"
 }
