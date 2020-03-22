@@ -3,9 +3,9 @@ import React, { ReactElement } from 'react';
 import './surveyButton.sass';
 
 interface SurveyButtonProps {
-  props: any;
+  props?: React.HTMLAttributes<HTMLButtonElement>;
   content: ReactElement | string | number;
-  selected: boolean;
+  selected?: boolean;
 }
 
 const SurveyButton = ({ props, content, selected }: SurveyButtonProps): ReactElement => (
