@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import { withFirebase } from '../Firebase';
-import { Firebase } from '../../types';
+import Firebase, { withFirebase } from '../Firebase';
 
 interface SignOutButtonProps {
   firebase: Firebase;

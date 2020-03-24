@@ -1,11 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  ChangeEvent,
+} from 'react';
 import { withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
-import PropTypes from 'prop-types';
+import firebase, { FirebaseError } from 'firebase';
 
-import { withFirebase } from '../Firebase';
+import Firebase, { FirebaseContext } from '../Firebase';
 import { HOME } from '../../constants/routes';
 import './SignUpForm.sass';
+// eslint-disable-next-line import/extensions,import/no-unresolved
+import { History } from '../../types';
+
+interface SignUpFormProps {
+  history: History;
+}
 
 
 const INITIAL_STATE = {
@@ -16,33 +26,39 @@ const INITIAL_STATE = {
   passwordTwo: '',
 };
 
-const SignUpFormBase = (props) => {
+const SignUpForm = ({ history }: SignUpFormProps) => {
   const [userInfo, setUserInfo] = useState(INITIAL_STATE);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<FirebaseError | null>(null);
   const [invalid, setInvalid] = useState(false);
+  const firebaseContext = useContext<Firebase>(FirebaseContext);
 
-  const onSubmit = (event) => {
-    props.firebase
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    firebaseContext
       .doCreateUserWithEmailAndPassword(userInfo.email, userInfo.passwordOne)
-      .then((authUser) => props.firebase
-        .user(authUser.user.uid)
-        .set({
-          firstName: userInfo.firstName,
-          lastName: userInfo.lastName,
-          email: userInfo.email,
-        }))
+      .then((authUser: firebase.auth.UserCredential) => {
+        if (authUser.user) {
+          return firebaseContext
+            .user(authUser.user.uid)
+            .set({
+              firstName: userInfo.firstName,
+              lastName: userInfo.lastName,
+              email: userInfo.email,
+            });
+        }
+        return Promise.resolve();
+      })
       .then(() => {
         setUserInfo(INITIAL_STATE);
-        props.history.push(HOME);
+        history.push(HOME);
       })
-      .catch((errorMsg) => {
+      .catch((errorMsg: FirebaseError) => {
         setError(errorMsg);
       });
 
     event.preventDefault();
   };
 
-  const onChange = (event) => {
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setUserInfo({
       ...userInfo,
       [event.target.name]: event.target.value,
@@ -107,14 +123,4 @@ const SignUpFormBase = (props) => {
   );
 };
 
-SignUpFormBase.propTypes = {
-  firebase: PropTypes.oneOfType([PropTypes.object]).isRequired,
-  history: PropTypes.oneOfType([PropTypes.object]).isRequired,
-};
-
-const SignUpForm = compose(
-  withRouter,
-  withFirebase,
-)(SignUpFormBase);
-
-export default SignUpForm;
+export default withRouter(SignUpForm);

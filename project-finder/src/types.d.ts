@@ -1,6 +1,3 @@
-export type Firebase = any;
+import * as H from 'history';
 
-export interface FirebaseError {
-  code: string;
-  message: string;
-}
+export type History = H.History;

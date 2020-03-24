@@ -9,9 +9,11 @@ import { withRouter } from 'react-router-dom';
 import { FirebaseError } from 'firebase';
 import Firebase, { FirebaseContext } from '../Firebase';
 import { HOME } from '../../constants/routes';
+// eslint-disable-next-line import/extensions,import/no-unresolved
+import { History } from '../../types';
 
 interface SignInProps {
-  history: any;
+  history: History;
 }
 
 const INITIAL_STATE = {
