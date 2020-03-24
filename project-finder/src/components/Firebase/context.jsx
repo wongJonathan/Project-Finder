@@ -1,6 +1,7 @@
 import React from 'react';
+import Firebase from './firebase';
 
-const FirebaseContext = React.createContext(null);
+const FirebaseContext = React.createContext();
 
 // Allows firebase to be passed down to child components
 export const withFirebase = (Component) => (props) => (

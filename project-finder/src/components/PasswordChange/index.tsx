@@ -1,11 +1,13 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import React, {
+  useState,
+  useEffect,
+  ChangeEvent,
+  useContext,
+} from 'react';
 
 import { FirebaseError } from 'firebase';
-import { withFirebase } from '../Firebase';
+import Firebase, { FirebaseContext } from '../Firebase';
 
-interface PasswordChangeFormProps {
-  firebase: any;
-}
 
 interface PasswordType {
   passwordOne: string;
@@ -18,13 +20,14 @@ const INITIAL_STATE = {
   passwordTwo: '',
 };
 
-const PasswordChangeForm = ({ firebase }: PasswordChangeFormProps) => {
+const PasswordChangeForm = () => {
   const [passwords, setPasswords] = useState<PasswordType>(INITIAL_STATE);
   const [error, setError] = useState<FirebaseError | null>(null);
   const [isInvalid, setInvalid] = useState(false);
+  const firebase = useContext(FirebaseContext);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    firebase
+    (firebase as Firebase)
       .doPasswordUpdate(passwords.passwordOne)
       .then(() => {
         setPasswords(INITIAL_STATE);
@@ -71,4 +74,4 @@ const PasswordChangeForm = ({ firebase }: PasswordChangeFormProps) => {
   );
 };
 
-export default withFirebase(PasswordChangeForm);
+export default PasswordChangeForm;

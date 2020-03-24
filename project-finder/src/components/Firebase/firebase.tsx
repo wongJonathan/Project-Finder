@@ -1,6 +1,7 @@
-import app from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -13,29 +14,39 @@ const config = {
 };
 
 class Firebase {
+  app: firebase.app.App;
+
+  auth: firebase.auth.Auth;
+
+  db: firebase.database.Database;
+
   constructor() {
-    app.initializeApp(config);
-    this.auth = app.auth();
-    this.db = app.database();
+    this.app = firebase.initializeApp(config);
+    this.auth = this.app.auth();
+    this.db = this.app.database();
   }
 
   // Auth API
   doCreateUserWithEmailAndPassword = (
-    email, password,
+    email: string, password: string,
   ) => this.auth.createUserWithEmailAndPassword(email, password);
 
   doSignInWithEmailAndPassword = (
-    email, password,
+    email: string, password: string,
   ) => this.auth.signInWithEmailAndPassword(email, password);
 
   doSignOut = () => this.auth.signOut();
 
-  doPasswordReset = (email) => this.auth.sendPasswordResetEmail(email);
+  doPasswordReset = (email: string) => this.auth.sendPasswordResetEmail(email);
 
-  doPasswordUpdate = (password) => this.auth.currentUser.updatePassword(password);
+  doPasswordUpdate = (password: string): Promise<void> => (
+    this.auth.currentUser
+      ? this.auth.currentUser.updatePassword(password)
+      : Promise.resolve()
+  );
 
   // User Api
-  user = (uid) => this.db.ref(`users/${uid}`);
+  user = (uid: string) => this.db.ref(`users/${uid}`);
 
   users = () => this.db.ref('users');
 }
