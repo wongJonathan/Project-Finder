@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useContext,
+  ChangeEvent,
+} from 'react';
 import { withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
 
-import PropTypes from 'prop-types';
-import { withFirebase } from '../Firebase';
+import { FirebaseError } from 'firebase';
+import Firebase, { FirebaseContext } from '../Firebase';
 import { HOME } from '../../constants/routes';
 
+interface SignInProps {
+  history: any;
+}
 
 const INITIAL_STATE = {
   email: '',
@@ -13,26 +20,27 @@ const INITIAL_STATE = {
   error: null,
 };
 
-const SignInFormBase = (props) => {
+const SignInForm = ({ history }: SignInProps) => {
   const [userInfo, setUserInfo] = useState(INITIAL_STATE);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<FirebaseError | null>(null);
   const [valid, setValid] = useState(true);
+  const firebase = useContext<Firebase>(FirebaseContext);
 
-  const onSubmit = (event) => {
-    props.firebase
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    firebase
       .doSignInWithEmailAndPassword(userInfo.email, userInfo.password)
       .then(() => {
         setUserInfo(INITIAL_STATE);
-        props.history.push(HOME);
+        history.push(HOME);
       })
-      .catch((errorMsg) => {
+      .catch((errorMsg: FirebaseError) => {
         setError(errorMsg);
       });
 
     event.preventDefault();
   };
 
-  const onChange = (event) => {
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setUserInfo({
       ...userInfo,
       [event.target.name]: event.target.value,
@@ -67,14 +75,4 @@ const SignInFormBase = (props) => {
   );
 };
 
-SignInFormBase.propTypes = {
-  firebase: PropTypes.oneOfType([PropTypes.object]).isRequired,
-  history: PropTypes.oneOfType([PropTypes.object]).isRequired,
-};
-
-const SignInForm = compose(
-  withRouter,
-  withFirebase,
-)(SignInFormBase);
-
-export default SignInForm;
+export default withRouter(SignInForm);

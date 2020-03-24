@@ -24,10 +24,10 @@ const PasswordChangeForm = () => {
   const [passwords, setPasswords] = useState<PasswordType>(INITIAL_STATE);
   const [error, setError] = useState<FirebaseError | null>(null);
   const [isInvalid, setInvalid] = useState(false);
-  const firebase = useContext(FirebaseContext);
+  const firebase = useContext<Firebase>(FirebaseContext);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    (firebase as Firebase)
+    firebase
       .doPasswordUpdate(passwords.passwordOne)
       .then(() => {
         setPasswords(INITIAL_STATE);
