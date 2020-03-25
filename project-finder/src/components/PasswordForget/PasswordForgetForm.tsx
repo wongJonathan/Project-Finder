@@ -1,30 +1,36 @@
+import React, {
+  useState,
+  useEffect,
+  ChangeEvent,
+  ReactElement,
+  useContext,
+} from 'react';
+import { FirebaseError } from 'firebase';
 
-import React, { useState, useEffect } from 'react';
-
-import PropTypes from 'prop-types';
-import { withFirebase } from '../Firebase';
+import Firebase, { FirebaseContext } from '../Firebase';
 
 
-const PasswordForgetFormBase = (props) => {
+const PasswordForgotForm = (): ReactElement => {
   const [email, setEmail] = useState('');
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<FirebaseError | null>(null);
   const [isInvalid, setInvalid] = useState(false);
+  const firebase = useContext<Firebase>(FirebaseContext);
 
-  const onSubmit = (event) => {
-    props.firebase
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    firebase
       .doPasswordReset(email)
       .then(() => {
         setEmail('');
         setError(null);
       })
-      .catch((errorMsg) => {
+      .catch((errorMsg: FirebaseError) => {
         setError(errorMsg);
       });
 
     event.preventDefault();
   };
 
-  const onChange = (event) => {
+  const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setEmail(event.target.value);
   };
 
@@ -49,10 +55,5 @@ const PasswordForgetFormBase = (props) => {
   );
 };
 
-PasswordForgetFormBase.propTypes = {
-  firebase: PropTypes.oneOfType([PropTypes.object]).isRequired,
-};
-
-const PasswordForgotForm = withFirebase(PasswordForgetFormBase);
 
 export default PasswordForgotForm;

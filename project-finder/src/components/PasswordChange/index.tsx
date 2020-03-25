@@ -1,7 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  useState,
+  useEffect,
+  ChangeEvent,
+  useContext, ReactElement,
+} from 'react';
 
-import { withFirebase } from '../Firebase';
+import { FirebaseError } from 'firebase';
+import Firebase, { FirebaseContext } from '../Firebase';
+
+
+interface PasswordType {
+  passwordOne: string;
+  passwordTwo: string;
+}
 
 
 const INITIAL_STATE = {
@@ -9,24 +20,25 @@ const INITIAL_STATE = {
   passwordTwo: '',
 };
 
-const PasswordChangeForm = (props) => {
-  const [passwords, setPasswords] = useState(INITIAL_STATE);
-  const [error, setError] = useState(null);
+const PasswordChangeForm = (): ReactElement => {
+  const [passwords, setPasswords] = useState<PasswordType>(INITIAL_STATE);
+  const [error, setError] = useState<FirebaseError | null>(null);
   const [isInvalid, setInvalid] = useState(false);
+  const firebase = useContext<Firebase>(FirebaseContext);
 
-  const onSubmit = (event) => {
-    props.firebase
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    firebase
       .doPasswordUpdate(passwords.passwordOne)
       .then(() => {
         setPasswords(INITIAL_STATE);
       })
-      .catch((errorMsg) => {
+      .catch((errorMsg: FirebaseError) => {
         setError(errorMsg);
       });
     event.preventDefault();
   };
 
-  const onChange = (event) => {
+  const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setPasswords({
       ...passwords,
       [event.target.name]: event.target.value,
@@ -61,8 +73,4 @@ const PasswordChangeForm = (props) => {
   );
 };
 
-PasswordChangeForm.propTypes = {
-  firebase: PropTypes.oneOfType([PropTypes.object]).isRequired,
-};
-
-export default withFirebase(PasswordChangeForm);
+export default PasswordChangeForm;

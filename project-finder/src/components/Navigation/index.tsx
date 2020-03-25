@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { ReactElement, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { User } from 'firebase';
 
 import {
   SIGN_IN, LANDING, HOME, ACCOUNT,
@@ -7,7 +8,7 @@ import {
 import SignOutButton from '../SignOut';
 import { AuthUserContext } from '../Session';
 
-const NavigationNonAuth = () => (
+const NavigationNonAuth = (): ReactElement => (
   <ul>
     <li>
       <Link to={LANDING}>Landing</Link>
@@ -18,7 +19,7 @@ const NavigationNonAuth = () => (
   </ul>
 );
 
-const NavigationAuth = () => (
+const NavigationAuth = (): ReactElement => (
   <ul>
     <li>
       <Link to={LANDING}>Landing</Link>
@@ -35,12 +36,14 @@ const NavigationAuth = () => (
   </ul>
 );
 
-const Navigation = () => (
-  <div>
-    <AuthUserContext.Consumer>
-      { (authUser) => (authUser ? <NavigationAuth /> : <NavigationNonAuth />)}
-    </AuthUserContext.Consumer>
-  </div>
-);
+const Navigation = (): ReactElement => {
+  const authUser = useContext<User | null>(AuthUserContext);
+
+  return (
+    <>
+      {authUser ? <NavigationAuth /> : <NavigationNonAuth />}
+    </>
+  );
+};
 
 export default Navigation;

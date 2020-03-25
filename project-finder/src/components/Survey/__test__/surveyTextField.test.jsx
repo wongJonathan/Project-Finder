@@ -33,12 +33,11 @@ describe('Survey Text Field', () => {
     Object.defineProperty(window.navigator, 'userAgent', { value: '', writable: true });
     navigator.userAgent = 'iPad';
     const mockProps = {
-      type: 'number',
       'aria-label': 'textbox',
     };
     const {
       getByLabelText,
-    } = render(<SurveyTextField props={mockProps} onChange={mockOnchange} />);
+    } = render(<SurveyTextField props={mockProps} type="number" onChange={mockOnchange} />);
 
     expect(getByLabelText(mockProps['aria-label'])).toHaveAttribute('pattern', '\\d*');
   });

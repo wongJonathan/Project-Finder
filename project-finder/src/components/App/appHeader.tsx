@@ -1,19 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ReactElement } from 'react';
 import { withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
 
-import PropTypes from 'prop-types';
 import './appHeader.sass';
 import { LANDING, SIGN_IN } from '../../constants/routes';
+// eslint-disable-next-line import/extensions,import/no-unresolved
+import { History } from '../../types';
 
-const AppHeaderBase = ({ history }) => {
+interface AppHeaderProps {
+  history: History;
+}
+
+
+const AppHeader = ({ history }: AppHeaderProps): ReactElement => {
   const [displayLogin, setDisplayLogin] = useState(true);
 
   useEffect(() => {
     setDisplayLogin(history.location.pathname === LANDING);
   }, [history.location.pathname]);
 
-  const onClickLogin = () => {
+  const onClickLogin = (): void => {
     history.push(SIGN_IN);
   };
 
@@ -33,12 +38,4 @@ const AppHeaderBase = ({ history }) => {
   );
 };
 
-AppHeaderBase.propTypes = {
-  history: PropTypes.oneOfType([PropTypes.object]).isRequired,
-};
-
-const AppHeader = compose(
-  withRouter,
-)(AppHeaderBase);
-
-export default AppHeader;
+export default withRouter(AppHeader);

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import ProjectPreference from './projectPreference';
 
-const SurveyPage = () => (
+const SurveyPage = (): ReactElement => (
   <div>
     <ProjectPreference />
   </div>
