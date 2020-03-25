@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -8,7 +8,14 @@ import SignUpPage from '../SignUp';
 import LandingPage from '../Landing';
 import HomePage from '../Home';
 import {
-  SIGN_UP, SIGN_IN, LANDING, HOME, ACCOUNT, PASSWORD_CHANGE, PASSWORD_FORGET, SURVEY,
+  SIGN_UP,
+  SIGN_IN,
+  LANDING,
+  HOME,
+  ACCOUNT,
+  PASSWORD_CHANGE,
+  PASSWORD_FORGET,
+  SURVEY,
 } from '../../constants/routes';
 import SignInPage from '../SignIn';
 import { withAuthentication } from '../Session';
@@ -21,7 +28,7 @@ import AppFooter from './appFooter';
 import SurveyPage from '../Survey';
 
 
-const App = () => (
+const App = (): ReactElement => (
   <Router>
     <div className="app-container">
       <AppHeader />

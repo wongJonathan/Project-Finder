@@ -1,4 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, {
+  ComponentClass,
+  ReactElement,
+  useContext,
+  useEffect,
+} from 'react';
 import { withRouter } from 'react-router-dom';
 import { User } from 'firebase';
 
@@ -11,8 +16,10 @@ import { History } from '../../types';
 
 type conditionType = (condition: User | null) => boolean;
 
-const withAuthorization = (condition: conditionType) => (Component: React.ComponentType) => {
-  const WithAuthorization = ({ history }: { history: History}) => {
+const withAuthorization = (condition: conditionType) => (
+  Component: React.ComponentType,
+): ComponentClass => {
+  const WithAuthorization = ({ history }: { history: History}): ReactElement => {
     const firebase = useContext<Firebase>(FirebaseContext);
     const authContext = useContext<User | null>(AuthUserContext);
 
@@ -24,7 +31,7 @@ const withAuthorization = (condition: conditionType) => (Component: React.Compon
           }
         },
       )
-    ), [firebase.auth]);
+    ), [firebase.auth, history]);
 
     return (
       <div>

@@ -2,7 +2,7 @@ import React, {
   useEffect,
   useState,
   useContext,
-  ChangeEvent,
+  ChangeEvent, ReactElement,
 } from 'react';
 import { withRouter } from 'react-router-dom';
 
@@ -22,13 +22,13 @@ const INITIAL_STATE = {
   error: null,
 };
 
-const SignInForm = ({ history }: SignInProps) => {
+const SignInForm = ({ history }: SignInProps): ReactElement => {
   const [userInfo, setUserInfo] = useState(INITIAL_STATE);
   const [error, setError] = useState<FirebaseError | null>(null);
   const [valid, setValid] = useState(true);
   const firebase = useContext<Firebase>(FirebaseContext);
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     firebase
       .doSignInWithEmailAndPassword(userInfo.email, userInfo.password)
       .then(() => {
@@ -42,7 +42,7 @@ const SignInForm = ({ history }: SignInProps) => {
     event.preventDefault();
   };
 
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setUserInfo({
       ...userInfo,
       [event.target.name]: event.target.value,

@@ -2,7 +2,7 @@ import React, {
   useState,
   useEffect,
   ChangeEvent,
-  useContext,
+  useContext, ReactElement,
 } from 'react';
 
 import { FirebaseError } from 'firebase';
@@ -20,26 +20,25 @@ const INITIAL_STATE = {
   passwordTwo: '',
 };
 
-const PasswordChangeForm = () => {
+const PasswordChangeForm = (): ReactElement => {
   const [passwords, setPasswords] = useState<PasswordType>(INITIAL_STATE);
   const [error, setError] = useState<FirebaseError | null>(null);
   const [isInvalid, setInvalid] = useState(false);
   const firebase = useContext<Firebase>(FirebaseContext);
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     firebase
       .doPasswordUpdate(passwords.passwordOne)
       .then(() => {
         setPasswords(INITIAL_STATE);
       })
       .catch((errorMsg: FirebaseError) => {
-        console.log(errorMsg);
         setError(errorMsg);
       });
     event.preventDefault();
   };
 
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setPasswords({
       ...passwords,
       [event.target.name]: event.target.value,

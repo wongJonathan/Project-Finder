@@ -29,15 +29,16 @@ class Firebase {
   // Auth API
   doCreateUserWithEmailAndPassword = (
     email: string, password: string,
-  ) => this.auth.createUserWithEmailAndPassword(email, password);
+  ): Promise<firebase.auth.UserCredential> => this
+    .auth.createUserWithEmailAndPassword(email, password);
 
   doSignInWithEmailAndPassword = (
     email: string, password: string,
-  ) => this.auth.signInWithEmailAndPassword(email, password);
+  ): Promise<firebase.auth.UserCredential> => this.auth.signInWithEmailAndPassword(email, password);
 
-  doSignOut = () => this.auth.signOut();
+  doSignOut = (): Promise<void> => this.auth.signOut();
 
-  doPasswordReset = (email: string) => this.auth.sendPasswordResetEmail(email);
+  doPasswordReset = (email: string): Promise<void> => this.auth.sendPasswordResetEmail(email);
 
   doPasswordUpdate = (password: string): Promise<void> => (
     this.auth.currentUser
@@ -46,9 +47,9 @@ class Firebase {
   );
 
   // User Api
-  user = (uid: string) => this.db.ref(`users/${uid}`);
+  user = (uid: string): firebase.database.Reference => this.db.ref(`users/${uid}`);
 
-  users = () => this.db.ref('users');
+  users = (): firebase.database.Reference => this.db.ref('users');
 }
 
 export default Firebase;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { withRouter } from 'react-router-dom';
 import { History } from 'history';
 
@@ -10,8 +10,8 @@ interface LandingPageProps {
 }
 
 
-const LandingPage = ({ history }: LandingPageProps) => {
-  const joinButton = () => {
+const LandingPage = ({ history }: LandingPageProps): ReactElement => {
+  const joinButton = (): void => {
     history.push(SIGN_UP);
   };
 

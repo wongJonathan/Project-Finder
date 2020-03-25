@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 
 import './appFooter.sass';
 import { LANDING } from '../../constants/routes';
 
-const AppFooter = () => (
+const AppFooter = (): ReactElement => (
   <div className="app-footer">
     <h2>
       Squad

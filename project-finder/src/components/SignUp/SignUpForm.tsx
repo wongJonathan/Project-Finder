@@ -2,7 +2,7 @@ import React, {
   useState,
   useEffect,
   useContext,
-  ChangeEvent,
+  ChangeEvent, ReactElement,
 } from 'react';
 import { withRouter } from 'react-router-dom';
 import firebase, { FirebaseError } from 'firebase';
@@ -26,13 +26,13 @@ const INITIAL_STATE = {
   passwordTwo: '',
 };
 
-const SignUpForm = ({ history }: SignUpFormProps) => {
+const SignUpForm = ({ history }: SignUpFormProps): ReactElement => {
   const [userInfo, setUserInfo] = useState(INITIAL_STATE);
   const [error, setError] = useState<FirebaseError | null>(null);
   const [invalid, setInvalid] = useState(false);
   const firebaseContext = useContext<Firebase>(FirebaseContext);
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     firebaseContext
       .doCreateUserWithEmailAndPassword(userInfo.email, userInfo.passwordOne)
       .then((authUser: firebase.auth.UserCredential) => {
@@ -58,7 +58,7 @@ const SignUpForm = ({ history }: SignUpFormProps) => {
     event.preventDefault();
   };
 
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setUserInfo({
       ...userInfo,
       [event.target.name]: event.target.value,

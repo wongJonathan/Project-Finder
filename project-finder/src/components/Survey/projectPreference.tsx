@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 
 import './projectPreference.sass';
 import Choices from './choices';
@@ -22,17 +22,19 @@ const ROLE_CHOICES = [
 ];
 const REMOTE_CHOICE = ['Yes', 'No'];
 
-const QuestionComponent = ({ text }: {text: string}) => (
+const QuestionComponent = ({ text }: {text: string}): ReactElement => (
   <div className="project-question">
     {text}
   </div>
 );
 
-const ProjectPreference = () => {
-  // eslint-disable-next-line no-unused-vars
+const ProjectPreference = (): ReactElement => {
+  // eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
   const [userPreferences, setUser] = useState<UserChoices>({});
 
-  const getChanges = (attributeName: string) => (value: string | number | string[] | number[]) => {
+  const getChanges = (attributeName: string) => (
+    value: string | number | string[] | number[],
+  ): void => {
     setUser((prevState) => ({
       ...prevState,
       [attributeName]: value,

@@ -1,4 +1,9 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import React, {
+  useState,
+  useEffect,
+  ChangeEvent,
+  ReactElement,
+} from 'react';
 
 import './surveyTextField.sass';
 
@@ -9,10 +14,10 @@ interface SurveyTextFieldProps {
 }
 
 
-const SurveyTextField = ({ props, onChange, type }: SurveyTextFieldProps) => {
+const SurveyTextField = ({ props, onChange, type }: SurveyTextFieldProps): ReactElement => {
   const [input, setInput] = useState('');
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setInput(e.target.value);
     onChange(e.target.value);
   };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 
 import SurveyButton from './surveyButton';
 
@@ -8,10 +8,10 @@ interface ChoicesProps {
 }
 
 
-const Choices = ({ choices, onChange }: ChoicesProps) => {
+const Choices = ({ choices, onChange }: ChoicesProps): ReactElement => {
   const [choice, setChoice] = useState<string | number>();
 
-  const onClick = (name: string | number) => () => {
+  const onClick = (name: string | number) => (): void => {
     setChoice(name);
     onChange(name);
   };

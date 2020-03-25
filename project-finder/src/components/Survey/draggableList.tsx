@@ -16,7 +16,7 @@ interface DraggableListProps {
   onChange: (newList: listType) => void;
 }
 
-const reinsert = (arr: listType, from: number, to: number) => {
+const reinsert = (arr: listType, from: number, to: number): listType => {
   const output = arr.slice(0);
   const val: string | number = output[from];
   output.splice(from, 1);
@@ -54,7 +54,7 @@ const SortableList = SortableContainer(({ items }: { items: listType }) => (
 const DraggableList = ({ initialList, onChange }: DraggableListProps): ReactElement => {
   const [list, setList] = useState<listType>(initialList);
 
-  const onSortEnd = ({ oldIndex, newIndex }: SortEnd) => {
+  const onSortEnd = ({ oldIndex, newIndex }: SortEnd): void => {
     const newList = reinsert(list, oldIndex, newIndex);
     setList(newList);
     onChange(newList);
@@ -72,7 +72,7 @@ const DraggableList = ({ initialList, onChange }: DraggableListProps): ReactElem
       <SortableList
         items={list}
         onSortEnd={onSortEnd}
-        shouldCancelStart={() => false}
+        shouldCancelStart={(): boolean => false}
       />
     </div>
   );
