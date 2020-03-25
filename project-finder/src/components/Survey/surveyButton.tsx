@@ -1,10 +1,10 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 
 import './surveyButton.sass';
 
 interface SurveyButtonProps {
   props?: React.HTMLAttributes<HTMLButtonElement>;
-  content: ReactElement | string | number;
+  content: ReactNode;
   selected?: boolean;
 }
 
