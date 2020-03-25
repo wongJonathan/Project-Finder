@@ -36,7 +36,7 @@ const SignUpForm = ({ history }: SignUpFormProps): ReactElement => {
     firebaseContext
       .doCreateUserWithEmailAndPassword(userInfo.email, userInfo.passwordOne)
       .then((authUser: firebase.auth.UserCredential) => {
-        if (authUser.user) {
+        if (authUser && authUser.user) {
           return firebaseContext
             .user(authUser.user.uid)
             .set({
@@ -45,7 +45,9 @@ const SignUpForm = ({ history }: SignUpFormProps): ReactElement => {
               email: userInfo.email,
             });
         }
-        return Promise.resolve();
+        return Promise.reject(
+          new Error('Cannot create a new account at this time.')
+        );
       })
       .then(() => {
         setUserInfo(INITIAL_STATE);

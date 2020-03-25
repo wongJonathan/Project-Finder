@@ -21,7 +21,7 @@ class Firebase {
   db: firebase.database.Database;
 
   constructor() {
-    this.app = firebase.initializeApp(config);
+    this.app = firebase.initializeApp({});
     this.auth = this.app.auth();
     this.db = this.app.database();
   }

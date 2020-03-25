@@ -14,6 +14,7 @@ describe('Sign out button', () => {
 
   it('should sign out on press', () => {
     const mockFirebase = new Firebase();
+    Firebase.prototype.doSignOut = jest.fn();
     const { getByText } = render(
       <FirebaseContext.Provider value={mockFirebase}>
         <SignOutButton />
