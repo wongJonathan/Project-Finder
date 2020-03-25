@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 import SignUpForm from './SignUpForm';
 import './index.sass';
 
 
-const SignUpPage = () => (
+const SignUpPage = (): ReactElement => (
   <div className="signup-page">
     <div className="signup-card">
       <div className="signup-header">Create account</div>
