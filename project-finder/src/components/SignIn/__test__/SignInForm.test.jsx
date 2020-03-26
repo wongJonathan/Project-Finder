@@ -16,7 +16,7 @@ describe('Sign In Form', () => {
   let signInRender;
 
   beforeEach(() => {
-    signInMock.mockClear();
+    signInMock.mockReset();
 
     Firebase.prototype.doSignInWithEmailAndPassword = signInMock;
 
@@ -48,11 +48,10 @@ describe('Sign In Form', () => {
     expect(signInMock.mock.calls.length).toBe(1);
     expect(signInMock.mock.calls[0]).toEqual(['email', 'password']);
     expect(history.location.pathname).toBe(HOME);
-
   });
 
   it('Should disable sign in if form is empty', () => {
-    const { getByPlaceholderText, getByText } = signInRender;
+    const { getByText } = signInRender;
 
     fireEvent.click(getByText('Sign In'));
 

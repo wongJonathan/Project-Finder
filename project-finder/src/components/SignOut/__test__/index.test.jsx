@@ -9,7 +9,7 @@ jest.mock('../../Firebase/firebase');
 
 describe('Sign out button', () => {
   beforeEach(() => {
-    Firebase.mockClear();
+    Firebase.mockReset();
   });
 
   it('should sign out on press', () => {

@@ -13,7 +13,7 @@ describe('Choices', () => {
   );
 
   beforeEach(() => {
-    mockOnChange.mockClear();
+    mockOnChange.mockReset();
   });
 
   it('Should display choices', () => {

@@ -8,7 +8,7 @@ describe('Survey Text Field', () => {
   const mockOnchange = jest.fn();
 
   beforeEach(() => {
-    mockOnchange.mockClear();
+    mockOnchange.mockReset();
   });
 
 

@@ -24,8 +24,8 @@ describe('Sign Up Form', () => {
   let signUpFormRender;
 
   beforeEach(() => {
-    mockEmailAndPassword.mockClear();
-    mockUser.mockClear();
+    mockEmailAndPassword.mockReset();
+    mockUser.mockReset();
 
     Firebase.prototype.doCreateUserWithEmailAndPassword = mockEmailAndPassword;
     Firebase.prototype.user = mockUser;
