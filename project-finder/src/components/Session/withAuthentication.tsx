@@ -16,7 +16,7 @@ const withAuthentication = (Component: ComponentType) => (): ReactElement => {
   const firebase = useContext<Firebase>(FirebaseContext);
 
   useEffect(() => (
-    firebase.auth.onAuthStateChanged((receivedUser) => {
+    firebase.onAuthStateChanged((receivedUser) => {
       setAuthUser(receivedUser || null);
     })
   ), [firebase]);

@@ -4,7 +4,7 @@ import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 
 import LandingPage from '../index';
-import { SIGN_UP} from '../../../constants/routes';
+import { SIGN_UP } from '../../../constants/routes';
 
 
 describe('Landing Page', () => {
