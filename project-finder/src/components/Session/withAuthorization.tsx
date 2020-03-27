@@ -24,15 +24,14 @@ const withAuthorization = (condition: conditionType) => (
     const authContext = useContext<User | null>(AuthUserContext);
 
     useEffect(() => (
-      firebase.auth.onAuthStateChanged(
+      firebase.onAuthStateChanged(
         (authUser) => {
           if (!condition(authUser)) {
             history.push(SIGN_IN);
           }
         },
       )
-    ), [firebase.auth, history]);
-
+    ), [firebase, history]);
     return (
       <div>
         {condition(authContext) ? <Component /> : null}

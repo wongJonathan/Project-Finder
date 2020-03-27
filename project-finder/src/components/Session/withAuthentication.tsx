@@ -20,7 +20,6 @@ const withAuthentication = (Component: ComponentType) => (): ReactElement => {
       setAuthUser(receivedUser || null);
     })
   ), [firebase]);
-
   return (
     <AuthUserContext.Provider value={authUser}>
       <Component />
