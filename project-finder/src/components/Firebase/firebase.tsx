@@ -1,4 +1,4 @@
-import firebase from 'firebase/app';
+import firebase, { User } from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 
@@ -21,7 +21,7 @@ class Firebase {
   db: firebase.database.Database;
 
   constructor() {
-    this.app = firebase.initializeApp({});
+    this.app = firebase.initializeApp(config);
     this.auth = this.app.auth();
     this.db = this.app.database();
   }
@@ -50,6 +50,11 @@ class Firebase {
   user = (uid: string): firebase.database.Reference => this.db.ref(`users/${uid}`);
 
   users = (): firebase.database.Reference => this.db.ref('users');
+
+  // Auth Api
+  onAuthStateChanged = (
+    callback: (user: User | null) => void,
+  ) => this.auth.onAuthStateChanged(callback);
 }
 
 export default Firebase;

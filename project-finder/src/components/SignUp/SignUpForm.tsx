@@ -46,7 +46,7 @@ const SignUpForm = ({ history }: SignUpFormProps): ReactElement => {
             });
         }
         return Promise.reject(
-          new Error('Cannot create a new account at this time.')
+          new Error('Cannot create a new account at this time.'),
         );
       })
       .then(() => {
